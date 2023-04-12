@@ -119,14 +119,15 @@
     <div class="flex">
       <div class="left">
         <img
-          src="{{}}"
+          src=""
           class="rounded float-start"
           alt="image"
           id="image"
           name="image"
         />
 
-        <form class="input-group mb-3" action="doWrite" method="POST">
+        <form class="input-group mb-3" action="/feed/" method="POST">
+          {% csrf_token %}
           <label for="exampleFormControlInput1" class="form-label">URL</label>
           <!--input의 name이 imageUrl-->
           <input
@@ -147,11 +148,13 @@
       </div>
 
       <div class="right">
+        
         <form
-          action="doWrite"
+          action="/feed/"
           method="POST"
           class="write-form form1 right-form"
-        >
+        > 
+          {% csrf_token %}
           <!--input의 name이 subject-->
           <input
             class="form-control form-control-lg subject"

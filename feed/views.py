@@ -34,15 +34,17 @@ def user_feed(request):
 # 로그인 사용자들이 피드 업로드 시 저장해주는 함수. : POST
 @login_required
 def upload_feed(request):
+    if request.method == 'GET':
+        return render(request, 'base.html')
     if request.method == 'POST':
         # user = request.user
         my_post = Post()
         # my_post.author = user
 
         # request.POST.get('html의 각각의 태그 name이 여기에 적힙니다','')
-        my_post.post_title = request.POST.get('', '')
-        my_post.post_content = request.POST.get('', '')
-        my_post.post_image = request.POST.get('', '')
+        my_post.post_title = request.POST.get('subject', None)
+        my_post.post_content = request.POST.get('contents', None)
+        # my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
         return redirect('/feed')
 
