@@ -53,3 +53,12 @@ def delete_feed(request, id):
     my_feed = Post.objects.get(id=id)
     my_feed.delete()
     return redirect('/feed')
+
+@login_required
+def modify_feed(request, id):
+    my_post = Post.objects.get(id=id)
+    my_post.post_title = request.POST.get('subject', None)
+    my_post.post_content = request.POST.get('contents', None)
+    my_post.post_image = request.POST.get('imageUrl', None)
+    my_post.save()
+    return redirect('/feed')
