@@ -42,6 +42,10 @@
       margin: 0 auto;
     }
 
+    .inner {
+      width: 1200px;
+    }
+
     .navbar-brand {
       font-size: 25px;
       font-weight: 500;
@@ -112,6 +116,22 @@
     .right button {
       float: right;
     }
+
+    /* feed의 grid함수 */
+    .grid {
+      /* width 1200 에 gep 30 img크기는 380 */
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      /* grid-template-columns: 300px 300px 500px; */
+      column-gap: 30px;
+      row-gap: 30px;
+    }
+
+    .grid img {
+      width: 380px;
+      height: 380px;
+    }
   </style>
 </head>
 
@@ -146,6 +166,7 @@
         </ul>
       </div>
     </form>
+    </div>
   </nav>
   {% block content %}
 

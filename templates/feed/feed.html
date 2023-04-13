@@ -1,2 +1,17 @@
-<!--로그인 후 메인페이지-->
 {% extends 'base.html' %}
+{% block title %}
+피드
+{% endblock %}
+{% block content %}
+<div class="inner">
+    <div class="grid">
+        {% for fe in feed %}
+        <div class="item">
+            <a href="/feed/detail/{{fe.id}}">
+                <img src="{{ fe.post_image }}" alt="image" name="image" />
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
