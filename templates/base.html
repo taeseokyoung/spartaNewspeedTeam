@@ -125,13 +125,14 @@
   <!-- {% block content %} -->
   <div class="container">
     <div class="detail">
-      <form class="input-group flex" action="doWrite" method="POST">
+      <form class="input-group flex" action="/feed/upload/" method="POST">
+        {% csrf_token %}
         <!-- {% csrf_token %} -->
 
         <!--좌측 이미지면-->
         <div class="left">
           <!--이미지src **{{수정}}-->
-          <img src="{{}}" class="rounded float-start image" alt="image" id="image" name="image" />
+          <img src="" class="rounded float-start image" alt="image" id="image" name="image" />
 
           <!--Url입력영역+button input의 name이 imageUrl-->
           <div class="url">
@@ -157,10 +158,10 @@
           <!-- <textarea class="contents form-control" name="contents" placeholder="내용 입력"></textarea>
             <button type="submit" value="작성" id="button-submit">작성</button> -->
           <div class="mb-3 right-form">
-            <textarea class="form-control white-space right-textarea" id="exampleFormControlTextarea1"
+            <textarea class="form-control white-space right-textarea" id="exampleFormControlTextarea1" name="contents"
               placeholder="내용을 입력하세요." rows="3"></textarea>
           </div>
-          <button type="button" class="btn btn-secondary" name="button">게시물 등록</button>
+          <button type="submit" class="btn btn-secondary" name="button">게시물 등록</button>
         </div>
       </form>
     </div>

@@ -34,17 +34,19 @@ def user_feed(request):
 # 로그인 사용자들이 피드 업로드 시 저장해주는 함수. : POST
 @login_required
 def upload_feed(request):
+    if request.method == 'GET':
+        return render(request, 'base.html')
     if request.method == 'POST':
         # user = request.user
         my_post = Post()
         # my_post.author = user
 
         # request.POST.get('html의 각각의 태그 name이 여기에 적힙니다','')
-        my_post.post_title = request.POST.get('', '')
-        my_post.post_content = request.POST.get('', '')
-        my_post.post_image = request.POST.get('', '')
+        my_post.post_title = request.POST.get('subject', None)
+        my_post.post_content = request.POST.get('contents', None)
+        #my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
-        return redirect('/feed')
+        return redirect('/feed/detail')
 
 
 # 로그인한 사용자들이 자신의 피드를 삭제할 함수.
@@ -56,9 +58,26 @@ def delete_feed(request, id):
 
 @login_required
 def modify_feed(request, id):
-    my_post = Post.objects.get(id=id)
-    my_post.post_title = request.POST.get('subject', None)
-    my_post.post_content = request.POST.get('contents', None)
-    my_post.post_image = request.POST.get('imageUrl', None)
-    my_post.save()
-    return redirect('/feed')
+    if request.method == 'GET':
+        return render(request, 'feed/feed_detail.html')
+    if request.method == 'POST':
+        my_post = Post.objects.get(id=id)
+        my_post.post_title = request.POST.get('subject', None)
+        my_post.post_content = request.POST.get('contents', None)
+        my_post.post_image = request.POST.get('imageUrl', None)
+        my_post.save()
+        return redirect('/feed')
+    
+@login_required
+def modify_feed(request):
+    if request.method == 'GET':
+        all_feed = Post.objects.all().order_by('-created_at')
+        return render(request, 'feed/feed_detail.html',{'post':all_feed[0]})
+    if request.method == 'POST':
+        # my_post = Post.objects.get(id=id)
+        # my_post.post_title = request.POST.get('subject', None)
+        # my_post.post_content = request.POST.get('contents', None)
+        # my_post.post_image = request.POST.get('imageUrl', None)
+        # my_post.save()
+        return redirect('/feed')
+    

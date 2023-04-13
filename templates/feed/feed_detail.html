@@ -12,7 +12,7 @@
       <!--좌측 이미지면-->
       <div class="left">
         <!--이미지src **{{수정}}-->
-        <img src="{{}}" class="rounded float-start image" alt="image" id="image" name="image" />
+        <img src="" class="rounded float-start image" alt="image" id="image" name="image" />
 
         <!-- Url 입력 영역+button input의 name이 imageUrl-->
         <div class="url">
@@ -30,7 +30,7 @@
         <div class="flex">
           <!--제목 input의 name이 subject-->
           <input class="form-control form-control-lg subject" type="text" placeholder="제목을 입력하세요"
-            aria-label=".form-control-lg example" id="subject" name="subject" />
+            aria-label=".form-control-lg example" id="subject" name="subject" value="{{post.post_title}}"/>
           <!--닉네임표시-->
           <a class="nav-link active" aria-current="page" href="#">{{nickname}}</a>
         </div>
@@ -39,7 +39,7 @@
               <button type="submit" value="작성" id="button-submit">작성</button> -->
         <div class="mb-3 right-form">
           <textarea class="form-control white-space right-textarea" id="exampleFormControlTextarea1"
-            placeholder="내용을 입력하세요." rows="3"></textarea>
+            placeholder="내용을 입력하세요." rows="3">{{post.post_content}}</textarea>
         </div>
         <button type="button" class="btn btn-secondary" name="button">게시물 등록</button>
       </div>
