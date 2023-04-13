@@ -61,7 +61,8 @@ def delete_feed(request, id):
 @login_required
 def modify_feed(request, id):
     if request.method == 'GET':
-        return render(request, 'feed/feed_detail.html')
+        my_post = Post.objects.get(id=id)
+        return render(request, 'feed/feed_detail.html', {'post':my_post})
     if request.method == 'POST':
         my_post = Post.objects.get(id=id)
         my_post.post_title = request.POST.get('subject', None)
@@ -70,16 +71,5 @@ def modify_feed(request, id):
         my_post.save()
         return redirect('/feed')
     
-@login_required
-def modify_feed(request):
-    if request.method == 'GET':
-        all_feed = Post.objects.all().order_by('-created_at')
-        return render(request, 'feed/feed_detail.html',{'post':all_feed[0]})
-    if request.method == 'POST':
-        # my_post = Post.objects.get(id=id)
-        # my_post.post_title = request.POST.get('subject', None)
-        # my_post.post_content = request.POST.get('contents', None)
-        # my_post.post_image = request.POST.get('imageUrl', None)
-        # my_post.save()
-        return redirect('/feed')
+
     
