@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 asgiref==3.6.0
 Django==4.2
 sqlparse==0.4.3
 tzdata==2023.3
-=======
-asgiref==3.6.0
-Django==4.2
-sqlparse==0.4.3
-tzdata==2023.3
->>>>>>> upstream/master
