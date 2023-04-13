@@ -9,14 +9,16 @@ from .models import Post
 def home(request):
     if request.method == 'GET':
         all_feed = Post.objects.all().order_by('-created_at')
-        return render(request, 'feed/feed.html', {'tweet': all_feed})
+        return render(request, 'feed/feed.html', {'feed': all_feed})
 
 
 # 메인 피드에 전체 게시글을 보여준다. : GET
 def feed(request):
     if request.method == 'GET':
-        all_feed = Post.objects.all().order_by('-created_at')
-        return render(request, 'feed/feed.html', {'tweet': all_feed})
+        user = request.user.is_authenticated
+        if user:    
+            all_feed = Post.objects.all().order_by('-created_at')
+        return render(request, 'feed/feed.html', {'feed': all_feed})
 
 
 # 마이페이지(로그인한 사용자들) 에 자신이 작성한 피드를 불러올 함수. : GET
@@ -24,7 +26,7 @@ def feed(request):
 def user_feed(request):
     if request.method == 'GET':
         # 사용자가 로그인 되었는지(인증된 사용자가 있는지)
-        # user = request.user.is_authenticated
+        
         if user:
             my_post = Post.objects.get(user=user).order_by('-created.at')
             return render(request, 'feed/my_feed.html', {'feed': my_post})
