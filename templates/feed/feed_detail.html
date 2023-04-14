@@ -30,7 +30,7 @@
         <div class="flex">
           <!--제목 input의 name이 subject-->
           <input class="form-control form-control-lg subject" type="text" placeholder="제목을 입력하세요"
-            aria-label=".form-control-lg example" id="subject" name="subject" value="{{post.post_title}}"/>
+            aria-label=".form-control-lg example" id="subject" name="subject" value="{{post.post_title}}" />
           <!--닉네임표시-->
           <a class="nav-link active" aria-current="page" href="#">{{nickname}}</a>
         </div>
@@ -41,7 +41,10 @@
           <textarea class="form-control white-space right-textarea" id="exampleFormControlTextarea1"
             placeholder="내용을 입력하세요." rows="3" name="contents">{{post.post_content}}</textarea>
         </div>
-        <button type="submit" class="btn btn-secondary" name="button">게시물 등록</button>
+        <div class="right_btn">
+          <button type="submit" class="btn btn-dark" name="button">수정</button>
+          <button class="btn btn-secondary"><a class="btn_detail" href="/feed">닫기</a></button>
+        </div>
       </div>
     </form>
   </div>

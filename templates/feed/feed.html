@@ -3,12 +3,13 @@
 피드
 {% endblock %}
 {% block content %}
-<div class="inner">
+<div class="container-feed">
     <div class="grid">
         {% for fe in feed %}
         <div class="item">
             <a href="/feed/detail/{{fe.id}}">
                 <img src="{{ fe.post_image }}" alt="image" name="image" />
+                <p>{{fe.post_title}}</p>
             </a>
         </div>
         {% endfor %}

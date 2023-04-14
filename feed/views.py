@@ -20,19 +20,6 @@ def feed(request):
         all_feed = Post.objects.all().order_by('-created_at')
         return render(request, 'feed/feed.html', {'feed': all_feed})
 
-
-# 마이페이지(로그인한 사용자들) 에 자신이 작성한 피드를 불러올 함수. : GET
-@login_required
-def user_feed(request):
-    if request.method == 'GET':
-        # 사용자가 로그인 되었는지(인증된 사용자가 있는지)
-        
-        if user:
-            my_post = Post.objects.get(user=user).order_by('-created.at')
-            return render(request, 'feed/my_feed.html', {'feed': my_post})
-            # 연결할 때 3강 4:25 부분 참고하기
-
-
 # 로그인 사용자들이 피드 업로드 시 저장해주는 함수. : POST
 @login_required
 def upload_feed(request):
@@ -69,7 +56,10 @@ def modify_feed(request, id):
         my_post.post_content = request.POST.get('contents', None)
         # my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
-        return redirect('/feed/')
+        render(request, 'feed/feed_detail.html', {'post':my_post, 'id':id})
+        return redirect('/feed/detail/'+str(id))
+    # 서경 : 게시물 수정하고나면 그위치에서 그대로 적용되도록 수정
+    
     
 
     
