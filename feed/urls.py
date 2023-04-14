@@ -1,11 +1,12 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
     # 04.11. 서경 url 연결
     path('admin/', admin.site.urls),
-    path('/', views.home, name='home'),  # 홈 화면
+    # path('/', views.home, name='home'),  # 홈 화면
+    path('', include('user.urls')),
     path('feed/', views.feed, name='feed'),  # 로그인한 사용자의 홈 화면
 
     path('feed/detail/delete/<int:id>', views.delete_feed, name='delete'),  # 게시글 삭제
