@@ -30,9 +30,8 @@
         <div class="flex">
           <!--제목 input의 name이 subject-->
           <input class="form-control form-control-lg subject" type="text" placeholder="제목을 입력하세요"
-            aria-label=".form-control-lg example" id="subject" name="subject" value="{{post.post_title}}" readonly='True'/>
-          <!-- readonly추가로 input을 수정하지 못하게만 바꿈 -->
-            <!--닉네임표시-->
+            aria-label=".form-control-lg example" id="subject" name="subject" value="{{post.post_title}}" />
+          <!--닉네임표시-->
           <a class="nav-link active" aria-current="page" href="#">{{nickname}}</a>
         </div>
         <!--내용 textarea의 name이 contents-->
@@ -40,11 +39,11 @@
               <button type="submit" value="작성" id="button-submit">작성</button> -->
         <div class="mb-3 right-form">
           <textarea class="form-control white-space right-textarea" id="exampleFormControlTextarea1"
-            placeholder="내용을 입력하세요." rows="3" name="contents" readonly='True'>{{post.post_content}}</textarea>
+            placeholder="내용을 입력하세요." rows="3" name="contents">{{post.post_content}}</textarea>
         </div>
         <div class="right_btn">
-          <button type="submit" class="btn btn-dark" name="button"><a class="btn_detail" href="/feed/detail/modify/{{id}}">수정</a></button>
-          <button class="btn btn-secondary"><a class="btn_detail" href="/feed">닫기</a></button>
+          <button type="submit" class="btn btn-dark" name="button" href="/feed/detail/{{id}}">수정완료</button>
+          <!-- <button class="btn btn-secondary"><a class="btn_detail" href="/feed">닫기</a></button> -->
         </div>
       </div>
     </form>

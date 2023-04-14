@@ -24,18 +24,20 @@ def feed(request):
 @login_required
 def upload_feed(request):
     if request.method == 'GET':
-        return render(request, 'base.html')
+        return render(request, 'feed/feed_upload.html')
     if request.method == 'POST':
         # user = request.user
         my_post = Post()
         # my_post.author = user
 
         # request.POST.get('html의 각각의 태그 name이 여기에 적힙니다','')
+        
         my_post.post_title = request.POST.get('subject', None)
         my_post.post_content = request.POST.get('contents', None)
         #my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
-        return redirect('/feed/detail')
+        id = my_post.id # 객체 생성 후(save이후) 객체 id 저장해 상세보기 페이지로.
+        return redirect('/feed/detail/'+str(id))
 
 
 # 로그인한 사용자들이 자신의 피드를 삭제할 함수.
@@ -49,7 +51,7 @@ def delete_feed(request, id):
 def modify_feed(request, id):
     if request.method == 'GET':
         my_post = Post.objects.get(id=id)
-        return render(request, 'feed/feed_detail.html', {'post':my_post, 'id':id})
+        return render(request, 'feed/feed_modify.html', {'post':my_post, 'id':id})
     if request.method == 'POST':
         my_post = Post.objects.get(id=id)
         my_post.post_title = request.POST.get('subject', None)
@@ -60,6 +62,16 @@ def modify_feed(request, id):
         return redirect('/feed/detail/'+str(id))
     # 서경 : 게시물 수정하고나면 그위치에서 그대로 적용되도록 수정
     
-    
+def view_feed(request, id):
+    if request.method == 'GET':
+        my_post = Post.objects.get(id=id)
+        return render(request, 'feed/feed_detail.html', {'post':my_post, 'id':id})
+    if request.method == 'POST':
+        my_post = Post.objects.get(id=id)
+        my_post.post_title = request.POST.get('subject', None)
+        my_post.post_content = request.POST.get('contents', None)
+        my_post.save()
+        return redirect('/feed/detail/'+str(id))
+    # detail보는 함수.
 
     

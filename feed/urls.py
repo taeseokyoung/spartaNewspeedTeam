@@ -13,8 +13,8 @@ urlpatterns = [
 
     # 기호님 게시글 수정
     # path('feed/modify/', views.modify_feed, name='modifiy'),
-    path('feed/detail/<int:id>', views.modify_feed, name='detail'),  # 상세보기
-    path('feed/detail/<int:id>', views.modify_feed, name='detail'),  # 상세보기 및 수정
+    path('feed/detail/<int:id>', views.view_feed, name='detail'),  # 상세보기
+    path('feed/detail/modify/<int:id>', views.modify_feed, name='detail'),  # 수정
     #### upload_feed에서 modify_feed로변경
     path('feed/upload/', views.upload_feed, name='upload'), #업로드 피드
 
