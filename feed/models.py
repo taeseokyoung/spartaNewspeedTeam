@@ -7,7 +7,7 @@ class Post(models.Model):
    
     post_title = models.TextField(default = "write title") #게시글 제목
     post_content = models.TextField(default = "write content") #게시글 내용
-    post_image = models.TextField(default = "image url")
+    post_image = models.TextField(default = "https://www.spectory.net/src/images/noImg.gif")
     created_at = models.DateTimeField(auto_now_add=True) # 생성시간
     updated_at = models.DateTimeField(auto_now=True) # 수정시간
     

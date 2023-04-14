@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     # 04.11. 서경 url 연결
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', views.feed, name='home'),  # 홈 화면
     path('feed/', views.feed, name='feed'),  # 홈 화면 - 사용자가 로그인 하면 ~님 반갑습니다.에 id값 띄우기와 글쓰기 로그아웃 버튼으로 변경.
 
@@ -20,3 +20,4 @@ urlpatterns = [
 
 
 ]
+

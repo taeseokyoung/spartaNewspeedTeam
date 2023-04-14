@@ -21,21 +21,24 @@ def feed(request):
         return render(request, 'feed/feed.html', {'feed': all_feed})
 
 # 로그인 사용자들이 피드 업로드 시 저장해주는 함수. : POST
-@login_required
+# @login_required
 def upload_feed(request):
     if request.method == 'GET':
         return render(request, 'feed/feed_upload.html')
     if request.method == 'POST':
+        print("1번")
         # user = request.user
         my_post = Post()
         # my_post.author = user
-
+        print("2번")
         # request.POST.get('html의 각각의 태그 name이 여기에 적힙니다','')
         
         my_post.post_title = request.POST.get('subject', None)
         my_post.post_content = request.POST.get('contents', None)
-        #my_post.post_image = request.POST.get('imageUrl', None)
+        my_post.post_image = request.POST.get('imageUrl', None) 
+        
         my_post.save()
+        
         id = my_post.id # 객체 생성 후(save이후) 객체 id 저장해 상세보기 페이지로.
         return redirect('/feed/detail/'+str(id))
 
@@ -56,9 +59,9 @@ def modify_feed(request, id):
         my_post = Post.objects.get(id=id)
         my_post.post_title = request.POST.get('subject', None)
         my_post.post_content = request.POST.get('contents', None)
-        # my_post.post_image = request.POST.get('imageUrl', None)
+        my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
-        render(request, 'feed/feed_detail.html', {'post':my_post, 'id':id})
+        # render(request, 'feed/feed_detail.html', {'post':my_post, 'id':id})
         return redirect('/feed/detail/'+str(id))
     # 서경 : 게시물 수정하고나면 그위치에서 그대로 적용되도록 수정
     

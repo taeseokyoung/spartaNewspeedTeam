@@ -2,7 +2,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,django
 
 .vscode
-.idea
+.idea/
+feed/migrations/
+
 ### Django ###
 *.log
 *.pot

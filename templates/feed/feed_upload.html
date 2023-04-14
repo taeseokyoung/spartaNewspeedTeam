@@ -20,7 +20,7 @@
           <p>URL</p>
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="이미지를 첨부할 url을 입력하세요." aria-label="Recipient's username"
-              aria-describedby="button-addon2" value="{{post.post_image}}">
+              aria-describedby="button-addon2" value="{{post.post_image}}" id="imageUrl" name="imageUrl">
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
             placeholder="내용을 입력하세요." rows="3" name="contents">{{post.post_content}}</textarea>
         </div>
         <div class="right_btn">
-          <a href="/feed/detail/modify/{{id}}" type="submit" class="btn btn-dark btn_detail" name="button">게시글 등록</a>
+          <button type="submit" class="btn btn-dark btn_detail" name="button">게시글 등록</button>
           <a class="btn btn-secondary btn_detail" href="/feed">닫기</a>
         </div>
       </div>
