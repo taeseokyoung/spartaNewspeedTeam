@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
   <div class="detail">
-    <form class="input-group flex" action="/detail/" method="POST">
+    <form class="input-group flex" action="/feed/detail/{{id}}" method="POST">
       {% csrf_token %}
 
       <!--좌측 이미지면-->
@@ -39,9 +39,9 @@
               <button type="submit" value="작성" id="button-submit">작성</button> -->
         <div class="mb-3 right-form">
           <textarea class="form-control white-space right-textarea" id="exampleFormControlTextarea1"
-            placeholder="내용을 입력하세요." rows="3">{{post.post_content}}</textarea>
+            placeholder="내용을 입력하세요." rows="3" name="contents">{{post.post_content}}</textarea>
         </div>
-        <button type="button" class="btn btn-secondary" name="button">게시물 등록</button>
+        <button type="submit" class="btn btn-secondary" name="button">게시물 등록</button>
       </div>
     </form>
   </div>

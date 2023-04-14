@@ -15,9 +15,9 @@ def home(request):
 # 메인 피드에 전체 게시글을 보여준다. : GET
 def feed(request):
     if request.method == 'GET':
-        user = request.user.is_authenticated
-        if user:    
-            all_feed = Post.objects.all().order_by('-created_at')
+        # user = request.user.is_authenticated###### 이부분 바뀜.
+        # if user:    ##########이부분
+        all_feed = Post.objects.all().order_by('-created_at')
         return render(request, 'feed/feed.html', {'feed': all_feed})
 
 
@@ -58,18 +58,18 @@ def delete_feed(request, id):
     my_feed.delete()
     return redirect('/feed')
 
-@login_required
+# @login_required ####### pagenotfound떠서 삭제함
 def modify_feed(request, id):
     if request.method == 'GET':
         my_post = Post.objects.get(id=id)
-        return render(request, 'feed/feed_detail.html', {'post':my_post})
+        return render(request, 'feed/feed_detail.html', {'post':my_post, 'id':id})
     if request.method == 'POST':
         my_post = Post.objects.get(id=id)
         my_post.post_title = request.POST.get('subject', None)
         my_post.post_content = request.POST.get('contents', None)
-        my_post.post_image = request.POST.get('imageUrl', None)
+        # my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
-        return redirect('/feed')
+        return redirect('/feed/')
     
 
     
