@@ -33,7 +33,7 @@
             readonly='True' />
           <!-- readonly추가로 input을 수정하지 못하게만 바꿈 -->
           <!--닉네임표시-->
-          <a class="nav-link active" aria-current="page" href="#">{{user}}</a>
+          <a class="nav-link active" aria-current="page" href="/account/{{post.user}}">{{post.user}}</a>
         </div>
         <!--내용 textarea의 name이 contents-->
         <!-- <textarea class="contents form-control" name="contents" placeholder="내용 입력"></textarea>
@@ -47,11 +47,18 @@
           <div class="right_btn">
             <a href="/feed/detail/modify/{{id}}" type="submit" class="btn btn-dark btn_detail" name="button">수정</a>
             <a class="btn btn-secondary btn_detail" href="/feed">닫기</a>
+            <a class="btn btn-secondary btn_detail" href="/feed/detail/delete/{{id}}">삭제</a>
           </div>
         {% else %}
+          {% if user.is_authenticated %}
           <div class="right_btn">
             <a class="btn btn-secondary btn_detail" href="/feed">닫기</a>
           </div>
+          {% else %}
+          <div class="right_btn">
+            <a class="btn btn-secondary btn_detail" href="/">닫기</a>
+          </div>
+          {% endif %}
         {% endif %}
       </div>
     </form>

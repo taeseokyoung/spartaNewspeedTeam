@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post
+from account.models import UserModel
 
 # 로그인한 사용자들의 피드가 최신순으로 조회되어야 한다.
 # 모든 비로그인 방문자들도 메인 피드를 구경할 수 있어야 한다.
@@ -15,10 +16,10 @@ def home(request):
 # 메인 피드에 전체 게시글을 보여준다. : GET
 def feed(request):
     if request.method == 'GET':
-        # user = request.user.is_authenticated###### 이부분 바뀜.
-        # if user:    ##########이부분
-        all_feed = Post.objects.all().order_by('-created_at')
-        return render(request, 'feed/feed.html', {'feed': all_feed})
+        user = request.user.is_authenticated###### 이부분 바뀜.
+        if user:    ##########이부분
+            all_feed = Post.objects.all().order_by('-created_at')
+            return render(request, 'feed/feed.html', {'feed': all_feed})
 
 # 로그인 사용자들이 피드 업로드 시 저장해주는 함수. : POST
 # @login_required
@@ -47,7 +48,9 @@ def upload_feed(request):
 @login_required
 def delete_feed(request, id):
     my_feed = Post.objects.get(id=id)
-    my_feed.delete()
+    user = request.user###### 이부분 바뀜.
+    if user == my_feed.user:
+        my_feed.delete()
     return redirect('/feed')
 
 # @login_required ####### pagenotfound떠서 삭제함
@@ -75,19 +78,9 @@ def view_feed(request, id):
         my_post.post_content = request.POST.get('contents', None)
         my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
-        return redirect('/feed/detail/'+str(id))
+        return render(request, 'feed/feed_detail.html', {'post':my_post, 'id':id})
+
     # detail보는 함수.
 
     
-def my_feed(request):
-    if request.method == 'GET':
-        all_feed = Post.objects.all().order_by('-created_at')
-        return render(request, 'feed/myfeed.html', {'feed': all_feed, 'user':request.user})
-    # if request.method == 'POST':
-    #     my_post = Post.objects.get(id=id)
-    #     my_post.post_title = request.POST.get('subject', None)
-    #     my_post.post_content = request.POST.get('contents', None)
-    #     my_post.post_image = request.POST.get('imageUrl', None)
-    #     my_post.save()
-    #     return redirect('/feed/detail/'+str(id))
-    # detail보는 함수.
+

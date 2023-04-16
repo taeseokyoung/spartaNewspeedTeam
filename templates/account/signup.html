@@ -3,7 +3,7 @@
 <div class="container my-3">
   <form method="post" action="{% url 'account:signup' %}">
     {% csrf_token %}
-    {% include "form_errors.html" %}
+    <!-- {% include "form_errors.html" %} -->
     <div class="mb-3">
       <label for="username">사용자 이름</label>
       <input type="text" class="form-control" name="username" id="username"
@@ -19,6 +19,7 @@
       <input type="password" class="form-control" name="password2" id="password2"
         value="{{ form.password2.value|default_if_none:'' }}">
     </div>
+    
     <button type="submit" class="btn btn-primary" name="button">생성하기</button>
   </form>
 </div>

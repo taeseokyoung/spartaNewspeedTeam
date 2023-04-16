@@ -207,8 +207,8 @@
             {% endif %}
 
             {% if user.is_authenticated %}
-            <a class="nav-link" href="/myfeed/">
-              <span class="sr-only">{{username}}</span>님 마이페이지
+            <a class="nav-link" href="/account/{{user.username}}/">
+              <span class="sr-only">{{user.username}}</span>님 마이페이지
             </a>
             {% endif %}
           </li>
@@ -223,11 +223,11 @@
       <div class="form-inline my-2 my-lg-0">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/login">
+            <a class="nav-link" href="/account/login">
               로그인 <span class="sr-only"></span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/signup">
+            <a class="nav-link" href="/account/signup">
               회원가입 <span class="sr-only"></span></a>
           </li>
         </ul>
@@ -243,7 +243,7 @@
           </li>
           <li class="nav-item active">
             <!-- href url 수정 필요 -->
-            <a class="nav-link" href="/logout/">
+            <a class="nav-link" href="/account/logout/">
               로그아웃 <span class="sr-only"></span></a>
           </li>
         </ul>
