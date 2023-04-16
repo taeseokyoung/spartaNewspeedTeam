@@ -17,7 +17,7 @@ urlpatterns = [
     path('feed/detail/modify/<int:id>', views.modify_feed, name='detail'),  # 수정
     #### upload_feed에서 modify_feed로변경
     path('feed/upload/', views.upload_feed, name='upload'), #업로드 피드
+    path('mypage/<int:id>', views.my_feed, name='mypage'),
 
 
 ]
-

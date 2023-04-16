@@ -30,7 +30,7 @@ def login_view(request):
 
 def logout_view(request):
     auth.logout(request)
-    return redirect(home)
+    return redirect('/')
 
 
 def signup_view(request):

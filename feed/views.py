@@ -32,7 +32,7 @@ def upload_feed(request):
         # my_post.author = user
         print("2번")
         # request.POST.get('html의 각각의 태그 name이 여기에 적힙니다','')
-        
+        my_post.user = request.user #### 포스트 유저에 요청한 유저가 저장됨!
         my_post.post_title = request.POST.get('subject', None)
         my_post.post_content = request.POST.get('contents', None)
         my_post.post_image = request.POST.get('imageUrl', None) 
@@ -73,8 +73,21 @@ def view_feed(request, id):
         my_post = Post.objects.get(id=id)
         my_post.post_title = request.POST.get('subject', None)
         my_post.post_content = request.POST.get('contents', None)
+        my_post.post_image = request.POST.get('imageUrl', None)
         my_post.save()
         return redirect('/feed/detail/'+str(id))
     # detail보는 함수.
 
     
+def my_feed(request):
+    if request.method == 'GET':
+        all_feed = Post.objects.all().order_by('-created_at')
+        return render(request, 'feed/myfeed.html', {'feed': all_feed, 'user':request.user})
+    # if request.method == 'POST':
+    #     my_post = Post.objects.get(id=id)
+    #     my_post.post_title = request.POST.get('subject', None)
+    #     my_post.post_content = request.POST.get('contents', None)
+    #     my_post.post_image = request.POST.get('imageUrl', None)
+    #     my_post.save()
+    #     return redirect('/feed/detail/'+str(id))
+    # detail보는 함수.
