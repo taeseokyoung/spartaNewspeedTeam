@@ -1,4 +1,8 @@
 
+.vscode
+.idea/
+feed/migrations/
+
 ### Django ###
 *.log
 *.pot
